@@ -1,4 +1,4 @@
-import { useState , useReducer} from 'react';
+import { use, useEffect , useReducer} from 'react';
 import './App.css'
 import DSC_0196 from './images/DSC_0196.jpg'
 const dish = [
@@ -42,6 +42,9 @@ function Main({dishes, openStatus, onStatus}) {
 }
 function App() {
   //const [status, setStatus] = useState(true);
+  useEffect(() => {
+    console.log(`useEffect is called ${status ? "Open" : "Closed"}`);
+  }, []);
   const [status, toggle] = useReducer((status) => !status, true);
   return (
     <div>
