@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState , useReducer} from 'react';
 import './App.css'
 import DSC_0196 from './images/DSC_0196.jpg'
 const dish = [
@@ -21,10 +21,11 @@ function Header({name , year}) {
     </header>
   );
 }
-function Main({dishes}) {
+function Main({dishes, openStatus, onStatus}) {
   return(
     <>
     <div>
+      <button onClick={()=> onStatus(true)}>I want to open</button>
       <h1>My favourite dishes</h1>
     </div>
     <main>
@@ -34,20 +35,22 @@ function Main({dishes}) {
         <li key={dish.id} style={{ listStyleType: "none" }}>{dish.title}</li>
       ))}
     </ul>
+    <h2>The restaurent is {openStatus ? "Open" : "Closed"} </h2>
     </main>
     </>
   );
 }
 function App() {
-  const [status, setStatus] = useState(true);
+  //const [status, setStatus] = useState(true);
+  const [status, toggle] = useReducer((status) => !status, true);
   return (
     <div>
       <h1>the restaurant is currently {" "} {status ? "Open" : "Closed"}</h1>
-      <button onClick={() => setStatus(!status)}>
+      <button onClick={toggle}>
         {status ? "Close" : "Open"} restaurant
       </button>
     <Header name="LearningEssentials" year={new Date().getFullYear()} />
-    <Main dishes={dishesObject} />
+    <Main dishes={dishesObject} openStatus={status} onStatus = {toggle} />
     </div>
   );
 }
