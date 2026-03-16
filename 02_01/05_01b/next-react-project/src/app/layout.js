@@ -14,12 +14,23 @@ const geistMono = Geist_Mono({
 
 function Header() {
   return (
-    <header>
-      <div>
-        <nav>
-          <div>
+    <header className="bg-slate-500 py-4">
+      <div className="container mx-auto px-4">
+        <nav className="flex items-center justify-between">
+          <div className="flex items-center">
             <Link href="/">Mountains</Link>
-            <Link href="/mountain">mountain info</Link>
+          </div>
+          
+          <div>
+            <Link href="/contact">Contact</Link>
+          </div>
+
+          <div>
+            <Link href="/hotel">Hotel</Link>
+          </div>
+
+          <div>
+            <Link href="/mountain">Mountain Info</Link>
           </div>
         </nav>
       </div>
